@@ -236,9 +236,38 @@
     line-height: 1.6;
     max-width: 78ch;
   }
+
+  .back-home {
+    position: fixed;
+    top: 1.1rem;
+    left: 1.1rem;
+    z-index: 40;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.9rem;
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    box-shadow: var(--shadow);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .back-home:hover {
+    transform: translateY(-1px);
+    border-color: var(--line-strong);
+  }
+  @media (max-width: 560px) {
+    .back-home { top: 0.7rem; left: 0.7rem; padding: 0.45rem 0.75rem; font-size: 0.72rem; }
+  }
 </style>
 </head>
 <body>
+<a class="back-home" href="../index.html">← Home</a>
 <div class="page">
 
   <header class="hero">
