@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruota delle Dignità</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,440;9..144,560;9..144,680&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #edf1f7;
+    --surface: #ffffff;
+    --surface-2: #e3e9f2;
+    --ink: #1c2436;
+    --ink-soft: #55627a;
+    --ink-faint: #93a0b8;
+    --line: #d5dde9;
+    --line-strong: #b9c5d8;
+
+    --domicilio: #2f5c8a;
+    --esaltazione: #a9812a;
+    --esilio: #b1503a;
+    --caduta: #756583;
+
+    --fuoco: #c1502e;
+    --terra: #6f7a3c;
+    --aria: #3f7d92;
+    --acqua: #3b5a8a;
+
+    --shadow: 0 1px 2px rgba(28,36,54,0.06), 0 6px 20px -8px rgba(28,36,54,0.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1420;
+      --surface: #161d2c;
+      --surface-2: #1d2536;
+      --ink: #e9edf6;
+      --ink-soft: #a3aec6;
+      --ink-faint: #626e88;
+      --line: #29324a;
+      --line-strong: #3a4560;
+
+      --domicilio: #7fa8d6;
+      --esaltazione: #d9ac47;
+      --esilio: #e08768;
+      --caduta: #b2a0bf;
+
+      --fuoco: #e07a55;
+      --terra: #9caf5e;
+      --aria: #6bb3cc;
+      --acqua: #7f9fd6;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 28px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1420;
+    --surface: #161d2c;
+    --surface-2: #1d2536;
+    --ink: #e9edf6;
+    --ink-soft: #a3aec6;
+    --ink-faint: #626e88;
+    --line: #29324a;
+    --line-strong: #3a4560;
+
+    --domicilio: #7fa8d6;
+    --esaltazione: #d9ac47;
+    --esilio: #e08768;
+    --caduta: #b2a0bf;
+
+    --fuoco: #e07a55;
+    --terra: #9caf5e;
+    --aria: #6bb3cc;
+    --acqua: #7f9fd6;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 28px -10px rgba(0,0,0,0.55);
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Source Sans 3", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    padding: clamp(20px, 4vw, 48px) clamp(14px, 4vw, 36px) 70px;
+  }
+  .page { max-width: 1080px; margin: 0 auto; }
+
+  header.hero { margin-bottom: 22px; }
+  .eyebrow {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 680;
+    font-size: clamp(28px, 4vw, 40px);
+    margin: 4px 0 8px;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  .lede { max-width: 70ch; color: var(--ink-soft); font-size: 15.5px; line-height: 1.6; margin: 0; }
+
+  .wheel-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 12px;
+    margin-top: 24px;
+  }
+  figure { margin: 0; }
+  svg { width: 100%; height: auto; display: block; }
+  figcaption {
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    text-align: center;
+    padding: 10px 12px 4px;
+  }
+
+  .ring-label { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 10px; letter-spacing: 0.04em; fill: var(--ink-faint); }
+  .compass-label { font-family: "Fraunces", Georgia, serif; font-weight: 620; font-size: 15px; fill: var(--ink-soft); text-anchor: middle; dominant-baseline: central; }
+  .tick-num { font-family: "JetBrains Mono", monospace; font-size: 10px; fill: var(--ink-faint); text-anchor: middle; dominant-baseline: central; }
+
+  .sign-glyph { font-size: 21px; text-anchor: middle; dominant-baseline: central; fill: var(--ink); }
+  .sign-name { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 12px; text-anchor: middle; dominant-baseline: central; fill: var(--ink); }
+  .el-text { font-size: 11.5px; font-weight: 600; text-anchor: middle; dominant-baseline: central; }
+  .mod-text { font-size: 10.5px; text-anchor: middle; dominant-baseline: central; fill: var(--ink-soft); }
+  .dignity-glyph { font-size: 26px; text-anchor: middle; dominant-baseline: central; }
+  .dignity-none { font-size: 13px; text-anchor: middle; dominant-baseline: central; fill: var(--ink-faint); }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    padding: 12px 16px;
+    margin-top: 14px;
+    background: var(--surface-2);
+    border-radius: 8px;
+    font-size: 12.5px;
+  }
+  .legend .item { display: inline-flex; align-items: center; gap: 7px; color: var(--ink-soft); }
+  .legend .swatch { width: 12px; height: 12px; border-radius: 3px; flex: none; }
+
+  .glyph-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: var(--surface-2);
+    border-radius: 8px;
+  }
+  .glyph-strip b { color: var(--ink); font-size: 13.5px; margin-right: 3px; }
+
+  footer {
+    margin-top: 34px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--ink-faint);
+    line-height: 1.6;
+    max-width: 78ch;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="hero">
+    <div class="eyebrow">Astrologia Vedica · Jyotish</div>
+    <h1>La ruota delle dignità</h1>
+    <p class="lede">Gli stessi dati degli altri due schemi, in forma di ruota a cerchi concentrici: da fuori verso il centro, segno, elemento, modalità, domicilio, esilio, esaltazione e caduta. Ariete parte da est e la ruota procede in senso antiorario, con Cancro a nord e Capricorno a sud.</p>
+  </header>
+
+  <div class="wheel-card">
+    <figure>
+      <svg id="wheel" viewBox="0 0 1300 1320" role="img" aria-label="Ruota a sette anelli concentrici con i dodici segni disposti in senso antiorario a partire da Ariete a est, Cancro a nord, Capricorno a sud: ogni anello, dall'esterno verso il centro, riporta segno, elemento, modalità, domicilio, esilio, esaltazione e caduta."></svg>
+    </figure>
+    <figcaption>Anelli dall'esterno al centro: Segno · Elemento · Modalità · Domicilio · Esilio · Esaltazione · Caduta.</figcaption>
+  </div>
+
+  <div class="legend" id="legend"></div>
+  <div class="glyph-strip" id="glyph-strip"></div>
+
+  <footer>
+    "—" indica l'assenza di quella dignità per il segno (Toro non ha caduta, Leone e Sagittario non hanno esaltazione, Sagittario non ha caduta). Dove sono indicati due pianeti (es. Toro → Esaltazione: Luna, Giove) i glifi sono separati da uno spazio, nell'ordine in cui compaiono negli altri due schemi. Schema basato sui dati confermati per il corso, non sul solo BPHS classico.
+  </footer>
+</div>
+
+<script>
+const VS = "︎";
+const PLANETS = {
+  sole:     { name: "Sole",     glyph: "☉" },
+  luna:     { name: "Luna",     glyph: "☽" },
+  marte:    { name: "Marte",    glyph: "♂" },
+  mercurio: { name: "Mercurio", glyph: "☿" },
+  giove:    { name: "Giove",    glyph: "♃" },
+  venere:   { name: "Venere",   glyph: "♀" },
+  saturno:  { name: "Saturno",  glyph: "♄" },
+  urano:    { name: "Urano",    glyph: "♅" },
+  nettuno:  { name: "Nettuno",  glyph: "♆" },
+  plutone:  { name: "Plutone",  glyph: "♇" },
+};
+
+const SIGN_ORDER = ["ariete","toro","gemelli","cancro","leone","vergine","bilancia","scorpione","sagittario","capricorno","acquario","pesci"];
+const SIGNS = {
+  ariete:     { glyph: "♈"+VS, name: "Ariete",     element: "Fuoco", modalita: "Cardinale", domicilio: ["marte"],           esilio: ["venere"],          esaltazione: ["sole"],            caduta: ["saturno"] },
+  toro:       { glyph: "♉"+VS, name: "Toro",       element: "Terra", modalita: "Fisso",     domicilio: ["venere"],          esilio: ["marte","plutone"], esaltazione: ["luna","giove"],    caduta: [] },
+  gemelli:    { glyph: "♊"+VS, name: "Gemelli",    element: "Aria",  modalita: "Mobile",    domicilio: ["mercurio"],        esilio: ["giove","urano"],   esaltazione: ["plutone"],         caduta: ["nettuno"] },
+  cancro:     { glyph: "♋"+VS, name: "Cancro",     element: "Acqua", modalita: "Cardinale", domicilio: ["luna"],            esilio: ["saturno"],         esaltazione: ["venere"],          caduta: ["marte"] },
+  leone:      { glyph: "♌"+VS, name: "Leone",      element: "Fuoco", modalita: "Fisso",     domicilio: ["sole"],            esilio: ["urano","saturno"], esaltazione: [],                  caduta: ["nettuno"] },
+  vergine:    { glyph: "♍"+VS, name: "Vergine",    element: "Terra", modalita: "Mobile",    domicilio: ["mercurio"],        esilio: ["giove","nettuno"], esaltazione: ["mercurio","urano"],caduta: ["venere","luna"] },
+  bilancia:   { glyph: "♎"+VS, name: "Bilancia",   element: "Aria",  modalita: "Cardinale", domicilio: ["venere"],          esilio: ["marte","plutone"], esaltazione: ["saturno"],         caduta: ["sole"] },
+  scorpione:  { glyph: "♏"+VS, name: "Scorpione",  element: "Acqua", modalita: "Fisso",     domicilio: ["marte","plutone"], esilio: ["venere"],          esaltazione: ["mercurio"],        caduta: ["giove","luna"] },
+  sagittario: { glyph: "♐"+VS, name: "Sagittario", element: "Fuoco", modalita: "Mobile",    domicilio: ["giove"],           esilio: ["mercurio"],        esaltazione: [],                  caduta: [] },
+  capricorno: { glyph: "♑"+VS, name: "Capricorno", element: "Terra", modalita: "Cardinale", domicilio: ["saturno"],         esilio: ["luna"],            esaltazione: ["marte"],           caduta: ["venere"] },
+  acquario:   { glyph: "♒"+VS, name: "Acquario",   element: "Aria",  modalita: "Fisso",     domicilio: ["saturno","urano"], esilio: ["sole"],            esaltazione: ["nettuno"],         caduta: ["marte","plutone"] },
+  pesci:      { glyph: "♓"+VS, name: "Pesci",      element: "Acqua", modalita: "Mobile",    domicilio: ["giove","nettuno"], esilio: ["mercurio"],        esaltazione: ["luna","venere"],   caduta: ["urano"] },
+};
+
+const ELEMENT_VAR = { Fuoco: "var(--fuoco)", Terra: "var(--terra)", Aria: "var(--aria)", Acqua: "var(--acqua)" };
+
+const svg = document.getElementById("wheel");
+const svgNS = "http://www.w3.org/2000/svg";
+const cx = 650, cy = 670;
+
+// ring boundaries, outer -> inner order for readability of the list, drawing uses them directly
+// bands are generous so that adjacent rings never collide even at due-east/due-west wedges,
+// where the whole ring stack lands on the same horizontal line (y = cy).
+const R = {
+  compass: 580,
+  nomeOut: 552, nomeIn: 480,
+  elOut: 480, elIn: 414,
+  modOut: 414, modIn: 348,
+  domOut: 348, domIn: 276,
+  esilOut: 276, esilIn: 204,
+  esalOut: 204, esalIn: 132,
+  cadOut: 132, cadIn: 60,
+};
+
+function pos(r, angleDeg) {
+  const rad = angleDeg * Math.PI / 180;
+  return { x: cx + r * Math.cos(rad), y: cy - r * Math.sin(rad) };
+}
+function el(name, attrs, text) {
+  const e = document.createElementNS(svgNS, name);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (text !== undefined) e.textContent = text;
+  return e;
+}
+function textAt(r, angle, cls, content, extra) {
+  const p = pos(r, angle);
+  const t = el("text", Object.assign({ class: cls, x: p.x.toFixed(1), y: p.y.toFixed(1) }, extra || {}), content);
+  return t;
+}
+
+const root = el("g", {});
+svg.appendChild(root);
+
+// concentric ring circles
+[R.compass, R.nomeOut, R.nomeIn, R.elIn, R.modIn, R.domIn, R.esilIn, R.esalIn, R.cadIn].forEach(r => {
+  root.appendChild(el("circle", { cx, cy, r, fill: "none", stroke: "var(--line)", "stroke-width": 1 }));
+});
+
+// 12 radial spokes at wedge boundaries
+for (let i = 0; i < 12; i++) {
+  const a = i * 30 - 15;
+  const p1 = pos(R.cadIn, a), p2 = pos(R.compass, a);
+  root.appendChild(el("line", { x1: p1.x.toFixed(1), y1: p1.y.toFixed(1), x2: p2.x.toFixed(1), y2: p2.y.toFixed(1), stroke: "var(--line)", "stroke-width": 1 }));
+}
+
+// compass labels
+[["E", 0], ["N", 90], ["O", 180], ["S", 270]].forEach(([label, a]) => {
+  const p = pos(R.compass + 22, a);
+  root.appendChild(el("circle", { cx: p.x.toFixed(1), cy: p.y.toFixed(1), r: 13, fill: "none", stroke: "var(--line-strong)", "stroke-width": 1.2 }));
+  root.appendChild(textAt(R.compass + 22, a, "compass-label", label));
+});
+
+function planetGlyphsText(keys, r, angle, colorVar) {
+  if (!keys.length) return textAt(r, angle, "dignity-none", "—");
+  const p = pos(r, angle);
+  const t = el("text", { x: p.x.toFixed(1), y: p.y.toFixed(1), class: "dignity-glyph", fill: colorVar, "text-anchor": "middle", "dominant-baseline": "central" });
+  keys.forEach((k, idx) => {
+    const tspan = el("tspan", idx > 0 ? { dx: "17" } : {});
+    tspan.textContent = PLANETS[k].glyph;
+    t.appendChild(tspan);
+  });
+  return t;
+}
+
+SIGN_ORDER.forEach((key, i) => {
+  const s = SIGNS[key];
+  const a = i * 30;
+
+  // sign glyph + name: same anchor point, stacked with a screen-space dy so it
+  // always reads as two lines regardless of where on the wheel it sits
+  {
+    const p = pos((R.nomeOut + R.nomeIn) / 2, a);
+    root.appendChild(el("text", { class: "sign-glyph", x: p.x.toFixed(1), y: p.y.toFixed(1), dy: "-9" }, s.glyph));
+    root.appendChild(el("text", { class: "sign-name", x: p.x.toFixed(1), y: p.y.toFixed(1), dy: "14" }, s.name));
+  }
+
+  // tick number just outside the sign ring
+  root.appendChild(textAt(R.compass - 10, a, "tick-num", String(i + 1)));
+
+  // element
+  const elT = textAt((R.elOut + R.elIn) / 2, a, "el-text", s.element);
+  elT.setAttribute("fill", ELEMENT_VAR[s.element]);
+  root.appendChild(elT);
+
+  // modalità
+  root.appendChild(textAt((R.modOut + R.modIn) / 2, a, "mod-text", s.modalita));
+
+  // domicilio / esilio / esaltazione / caduta
+  root.appendChild(planetGlyphsText(s.domicilio, (R.domOut + R.domIn) / 2, a, "var(--domicilio)"));
+  root.appendChild(planetGlyphsText(s.esilio, (R.esilOut + R.esilIn) / 2, a, "var(--esilio)"));
+  root.appendChild(planetGlyphsText(s.esaltazione, (R.esalOut + R.esalIn) / 2, a, "var(--esaltazione)"));
+  root.appendChild(planetGlyphsText(s.caduta, (R.cadOut + R.cadIn) / 2, a, "var(--caduta)"));
+});
+
+// ---- legend ----
+const legend = document.getElementById("legend");
+const legendDefs = [
+  ["var(--domicilio)", "Domicilio"],
+  ["var(--esaltazione)", "Esaltazione"],
+  ["var(--esilio)", "Esilio"],
+  ["var(--caduta)", "Caduta"],
+];
+legend.innerHTML = legendDefs.map(([color, label]) => `
+  <span class="item"><span class="swatch" style="background:${color}"></span>${label}</span>`).join("")
+  + `<span class="item"><span class="swatch" style="background:var(--fuoco)"></span>Fuoco</span>`
+  + `<span class="item"><span class="swatch" style="background:var(--terra)"></span>Terra</span>`
+  + `<span class="item"><span class="swatch" style="background:var(--aria)"></span>Aria</span>`
+  + `<span class="item"><span class="swatch" style="background:var(--acqua)"></span>Acqua</span>`;
+
+const glyphStrip = document.getElementById("glyph-strip");
+glyphStrip.innerHTML = Object.values(PLANETS).map(p => `<span><b>${p.glyph}</b>${p.name}</span>`).join("");
+</script>
+</body>
+</html>

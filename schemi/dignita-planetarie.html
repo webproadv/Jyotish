@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dignità Planetarie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,440;9..144,560;9..144,680&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #edf1f7;
+    --surface: #ffffff;
+    --surface-2: #e3e9f2;
+    --ink: #1c2436;
+    --ink-soft: #55627a;
+    --ink-faint: #93a0b8;
+    --line: #d5dde9;
+    --line-strong: #b9c5d8;
+
+    --domicilio: #2f5c8a;
+    --domicilio-soft: #e7eef6;
+    --esaltazione: #a9812a;
+    --esaltazione-soft: #f7efdd;
+    --esilio: #b1503a;
+    --esilio-soft: #f8e9e4;
+    --caduta: #756583;
+    --caduta-soft: #ece6f0;
+
+    --fuoco: #c1502e;
+    --terra: #6f7a3c;
+    --aria: #3f7d92;
+    --acqua: #3b5a8a;
+
+    --shadow: 0 1px 2px rgba(28,36,54,0.06), 0 6px 20px -8px rgba(28,36,54,0.12);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1420;
+      --surface: #161d2c;
+      --surface-2: #1d2536;
+      --ink: #e9edf6;
+      --ink-soft: #a3aec6;
+      --ink-faint: #626e88;
+      --line: #29324a;
+      --line-strong: #3a4560;
+
+      --domicilio: #7fa8d6;
+      --domicilio-soft: #1d2c40;
+      --esaltazione: #d9ac47;
+      --esaltazione-soft: #362c17;
+      --esilio: #e08768;
+      --esilio-soft: #3a251f;
+      --caduta: #b2a0bf;
+      --caduta-soft: #2b2333;
+
+      --fuoco: #e07a55;
+      --terra: #9caf5e;
+      --aria: #6bb3cc;
+      --acqua: #7f9fd6;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 28px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1420;
+    --surface: #161d2c;
+    --surface-2: #1d2536;
+    --ink: #e9edf6;
+    --ink-soft: #a3aec6;
+    --ink-faint: #626e88;
+    --line: #29324a;
+    --line-strong: #3a4560;
+
+    --domicilio: #7fa8d6;
+    --domicilio-soft: #1d2c40;
+    --esaltazione: #d9ac47;
+    --esaltazione-soft: #362c17;
+    --esilio: #e08768;
+    --esilio-soft: #3a251f;
+    --caduta: #b2a0bf;
+    --caduta-soft: #2b2333;
+
+    --fuoco: #e07a55;
+    --terra: #9caf5e;
+    --aria: #6bb3cc;
+    --acqua: #7f9fd6;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 28px -10px rgba(0,0,0,0.55);
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Source Sans 3", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    padding: clamp(24px, 5vw, 56px) clamp(16px, 5vw, 40px) 80px;
+  }
+  .page { max-width: 1180px; margin: 0 auto; }
+
+  header.hero {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+  .eyebrow {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  h1 {
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    font-optical-sizing: auto;
+    font-weight: 680;
+    font-size: clamp(30px, 4.4vw, 44px);
+    margin: 0;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  .lede {
+    max-width: 62ch;
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 2px 0 0;
+  }
+
+  /* dignity key */
+  .dignity-key {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 26px 0 8px;
+  }
+  .key-item {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .key-item .swatch {
+    width: 22px; height: 4px; border-radius: 2px; margin-bottom: 6px;
+  }
+  .key-item .k-name {
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .key-item .k-desc {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+
+  /* planet glyph key */
+  .glyph-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 22px;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin: 18px 0 40px;
+    padding: 12px 16px;
+    background: var(--surface-2);
+    border-radius: 6px;
+  }
+  .glyph-strip b { color: var(--ink); font-size: 14px; margin-right: 3px; }
+
+  /* element sections */
+  .element-section { margin-bottom: 40px; }
+  .element-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--el-color);
+  }
+  .element-head .el-name {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 620;
+    font-size: 20px;
+    color: var(--el-color);
+  }
+  .element-head .el-sub {
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  .sign-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 860px) {
+    .sign-grid { grid-template-columns: 1fr 1fr; }
+    .dignity-key { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .sign-grid { grid-template-columns: 1fr; }
+  }
+
+  .sign-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--el-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    padding: 16px 16px 12px;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  @media (prefers-reduced-motion: reduce) { .sign-card { transition: none; } }
+  .sign-card:hover { transform: translateY(-2px); }
+
+  .sign-card .sign-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .sign-card .sign-name {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    font-size: 18.5px;
+  }
+  .sign-card .sign-en {
+    font-size: 12px;
+    color: var(--ink-faint);
+    font-style: italic;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 78px 1fr;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    border-top: 1px solid var(--line);
+  }
+  .row:first-of-type { border-top: none; }
+  .row .label {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .row .value {
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 8px;
+  }
+  .row .value .pv-item { display: inline-flex; align-items: baseline; gap: 5px; white-space: nowrap; }
+  .row .value .pv-sep { color: var(--ink-faint); }
+  .row .value .glyph { font-size: 15px; }
+  .row .value .none { color: var(--ink-faint); font-style: italic; font-size: 13px; }
+
+  .row.domicilio .label { color: var(--domicilio); }
+  .row.esaltazione .label { color: var(--esaltazione); }
+  .row.esilio .label { color: var(--esilio); }
+  .row.caduta .label { color: var(--caduta); }
+
+  .note {
+    margin-top: 6px;
+    font-size: 11.5px;
+    color: var(--ink-faint);
+    font-style: italic;
+    border-top: 1px dashed var(--line);
+    padding-top: 6px;
+  }
+
+  footer {
+    margin-top: 48px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    line-height: 1.6;
+    max-width: 78ch;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="hero">
+    <div class="eyebrow">Astrologia Vedica · Jyotish</div>
+    <h1>Dignità Planetarie nei Dodici Segni</h1>
+    <p class="lede">Domicilio, esaltazione, esilio e caduta di ciascun pianeta, segno per segno, raggruppati per elemento (fuoco, terra, aria, acqua) e modalità (cardinale, fisso, mobile) — schema del corso, che integra anche i tre pianeti moderni (Plutone, Urano, Nettuno) come co-domicili e co-esaltazioni.</p>
+  </header>
+
+  <div class="dignity-key">
+    <div class="key-item">
+      <span class="swatch" style="background:var(--domicilio)"></span>
+      <span class="k-name" style="color:var(--domicilio)">Domicilio</span>
+      <span class="k-desc">Il pianeta è signore del segno: è "a casa propria", agisce con pieno diritto e stabilità.</span>
+    </div>
+    <div class="key-item">
+      <span class="swatch" style="background:var(--esaltazione)"></span>
+      <span class="k-name" style="color:var(--esaltazione)">Esaltazione</span>
+      <span class="k-desc">Il pianeta esprime la sua forza più alta (uccha), oltre la propria natura ordinaria.</span>
+    </div>
+    <div class="key-item">
+      <span class="swatch" style="background:var(--esilio)"></span>
+      <span class="k-name" style="color:var(--esilio)">Esilio</span>
+      <span class="k-desc">Segno opposto al domicilio: il pianeta è ospite scomodo, in territorio che non gli è proprio.</span>
+    </div>
+    <div class="key-item">
+      <span class="swatch" style="background:var(--caduta)"></span>
+      <span class="k-name" style="color:var(--caduta)">Caduta</span>
+      <span class="k-desc">Il pianeta è alla sua massima debolezza (neecha), opposta all'esaltazione.</span>
+    </div>
+  </div>
+
+  <div class="glyph-strip" id="glyph-strip"></div>
+
+  <div id="sections"></div>
+
+  <footer>
+    Nota sui nodi lunari: Rahu e Ketu non compaiono in questo schema perché il BPHS e i commentatori successivi non concordano sul segno esatto della loro esaltazione — la convenzione più diffusa nella pratica moderna è Rahu esaltato in Toro (debilitato in Scorpione) e Ketu esaltato in Scorpione (debilitato in Toro), ma alcune scuole indicano Gemelli/Sagittario. Verifica quale convenzione segue il tuo corso prima dell'esame.
+    <br><br>
+    Caso particolare: la Vergine è l'unico segno in cui domicilio ed esaltazione coincidono sullo stesso pianeta (Mercurio) — è anche il suo segno di moolatrikona.
+  </footer>
+
+</div>
+
+<script>
+const PLANETS = {
+  sole: { name: "Sole", glyph: "☉" },
+  luna: { name: "Luna", glyph: "☽" },
+  marte: { name: "Marte", glyph: "♂" },
+  mercurio: { name: "Mercurio", glyph: "☿" },
+  giove: { name: "Giove", glyph: "♃" },
+  venere: { name: "Venere", glyph: "♀" },
+  saturno: { name: "Saturno", glyph: "♄" },
+  urano: { name: "Urano", glyph: "♅" },
+  nettuno: { name: "Nettuno", glyph: "♆" },
+  plutone: { name: "Plutone", glyph: "♇" },
+};
+
+const ELEMENTS = [
+  { key: "fuoco", name: "Fuoco", sub: "Agni · cardinale d'iniziativa", color: "var(--fuoco)",
+    signs: ["ariete","leone","sagittario"] },
+  { key: "terra", name: "Terra", sub: "Prithvi · concretezza e struttura", color: "var(--terra)",
+    signs: ["toro","vergine","capricorno"] },
+  { key: "aria", name: "Aria", sub: "Vayu · relazione e scambio", color: "var(--aria)",
+    signs: ["gemelli","bilancia","acquario"] },
+  { key: "acqua", name: "Acqua", sub: "Jal · sensibilità e profondità", color: "var(--acqua)",
+    signs: ["cancro","scorpione","pesci"] },
+];
+
+// domicilio / esaltazione / esilio / caduta: array di chiavi pianeta (può essere vuoto = nessuno)
+const SIGNS = {
+  ariete:     { name: "Ariete", en: "Aries", domicilio: ["marte"], esaltazione: ["sole"], esilio: ["venere"], caduta: ["saturno"] },
+  toro:       { name: "Toro", en: "Taurus", domicilio: ["venere"], esaltazione: ["luna","giove"], esilio: ["marte","plutone"], caduta: [] },
+  gemelli:    { name: "Gemelli", en: "Gemini", domicilio: ["mercurio"], esaltazione: ["plutone"], esilio: ["giove","urano"], caduta: ["nettuno"] },
+  cancro:     { name: "Cancro", en: "Cancer", domicilio: ["luna"], esaltazione: ["venere"], esilio: ["saturno"], caduta: ["marte"] },
+  leone:      { name: "Leone", en: "Leo", domicilio: ["sole"], esaltazione: [], esilio: ["urano","saturno"], caduta: ["nettuno"] },
+  vergine:    { name: "Vergine", en: "Virgo", domicilio: ["mercurio"], esaltazione: ["mercurio","urano"], esilio: ["giove","nettuno"], caduta: ["venere","luna"] },
+  bilancia:   { name: "Bilancia", en: "Libra", domicilio: ["venere"], esaltazione: ["saturno"], esilio: ["marte","plutone"], caduta: ["sole"] },
+  scorpione:  { name: "Scorpione", en: "Scorpio", domicilio: ["marte","plutone"], esaltazione: ["mercurio"], esilio: ["venere"], caduta: ["giove","luna"] },
+  sagittario: { name: "Sagittario", en: "Sagittarius", domicilio: ["giove"], esaltazione: [], esilio: ["mercurio"], caduta: [] },
+  capricorno: { name: "Capricorno", en: "Capricorn", domicilio: ["saturno"], esaltazione: ["marte"], esilio: ["luna"], caduta: ["venere"] },
+  acquario:   { name: "Acquario", en: "Aquarius", domicilio: ["saturno","urano"], esaltazione: ["nettuno"], esilio: ["sole"], caduta: ["marte","plutone"] },
+  pesci:      { name: "Pesci", en: "Pisces", domicilio: ["giove","nettuno"], esaltazione: ["luna","venere"], esilio: ["mercurio"], caduta: ["urano"] },
+};
+
+const glyphStrip = document.getElementById("glyph-strip");
+glyphStrip.innerHTML = Object.values(PLANETS).map(p => `<span><b>${p.glyph}</b>${p.name}</span>`).join("");
+
+function planetValue(keys) {
+  if (!keys || !keys.length) return `<span class="value"><span class="none">— nessuno</span></span>`;
+  const items = keys.map(k => {
+    const p = PLANETS[k];
+    return `<span class="pv-item"><span class="glyph">${p.glyph}</span>${p.name}</span>`;
+  }).join('<span class="pv-sep">+</span>');
+  return `<span class="value">${items}</span>`;
+}
+
+const sectionsEl = document.getElementById("sections");
+ELEMENTS.forEach(el => {
+  const section = document.createElement("section");
+  section.className = "element-section";
+  section.style.setProperty("--el-color", el.color);
+
+  const cards = el.signs.map(sKey => {
+    const s = SIGNS[sKey];
+    const specialNote = sKey === "vergine" ? `<div class="note">Domicilio ed esaltazione condividono Mercurio</div>` : "";
+    return `
+      <div class="sign-card">
+        <div class="sign-head">
+          <span class="sign-name">${s.name}</span>
+          <span class="sign-en">${s.en}</span>
+        </div>
+        <div class="row domicilio"><span class="label">Domicilio</span>${planetValue(s.domicilio)}</div>
+        <div class="row esaltazione"><span class="label">Esaltazione</span>${planetValue(s.esaltazione)}</div>
+        <div class="row esilio"><span class="label">Esilio</span>${planetValue(s.esilio)}</div>
+        <div class="row caduta"><span class="label">Caduta</span>${planetValue(s.caduta)}</div>
+        ${specialNote}
+      </div>`;
+  }).join("");
+
+  section.innerHTML = `
+    <div class="element-head">
+      <span class="el-name">${el.name}</span>
+      <span class="el-sub">${el.sub}</span>
+    </div>
+    <div class="sign-grid">${cards}</div>
+  `;
+  sectionsEl.appendChild(section);
+});
+</script>
+</body>
+</html>

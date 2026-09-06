@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Costellazione delle Dignità</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,440;9..144,560;9..144,680&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #edf1f7;
+    --surface: #ffffff;
+    --surface-2: #e3e9f2;
+    --ink: #1c2436;
+    --ink-soft: #55627a;
+    --ink-faint: #93a0b8;
+    --line: #d5dde9;
+    --line-strong: #b9c5d8;
+
+    --domicilio: #2f5c8a;
+    --domicilio-soft: #e7eef6;
+    --esaltazione: #a9812a;
+    --esaltazione-soft: #f7efdd;
+    --esilio: #b1503a;
+    --esilio-soft: #f8e9e4;
+    --caduta: #756583;
+    --caduta-soft: #ece6f0;
+
+    --node-sign: #2a3350;
+    --node-planet: #ffffff;
+    --node-planet-fill: #1c2436;
+
+    --shadow: 0 1px 2px rgba(28,36,54,0.06), 0 6px 20px -8px rgba(28,36,54,0.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1420;
+      --surface: #161d2c;
+      --surface-2: #1d2536;
+      --ink: #e9edf6;
+      --ink-soft: #a3aec6;
+      --ink-faint: #626e88;
+      --line: #29324a;
+      --line-strong: #3a4560;
+
+      --domicilio: #7fa8d6;
+      --domicilio-soft: #1d2c40;
+      --esaltazione: #d9ac47;
+      --esaltazione-soft: #362c17;
+      --esilio: #e08768;
+      --esilio-soft: #3a251f;
+      --caduta: #b2a0bf;
+      --caduta-soft: #2b2333;
+
+      --node-sign: #d7deee;
+      --node-planet-fill: #e9edf6;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 28px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1420;
+    --surface: #161d2c;
+    --surface-2: #1d2536;
+    --ink: #e9edf6;
+    --ink-soft: #a3aec6;
+    --ink-faint: #626e88;
+    --line: #29324a;
+    --line-strong: #3a4560;
+
+    --domicilio: #7fa8d6;
+    --domicilio-soft: #1d2c40;
+    --esaltazione: #d9ac47;
+    --esaltazione-soft: #362c17;
+    --esilio: #e08768;
+    --esilio-soft: #3a251f;
+    --caduta: #b2a0bf;
+    --caduta-soft: #2b2333;
+
+    --node-sign: #d7deee;
+    --node-planet-fill: #e9edf6;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 28px -10px rgba(0,0,0,0.55);
+  }
+
+  * { box-sizing: border-box; }
+  html { color-scheme: light dark; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Source Sans 3", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    padding: clamp(20px, 4vw, 48px) clamp(14px, 4vw, 36px) 70px;
+  }
+  .page { max-width: 1240px; margin: 0 auto; }
+
+  header.hero { margin-bottom: 26px; }
+  .eyebrow {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  h1 {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 680;
+    font-size: clamp(28px, 4vw, 40px);
+    margin: 4px 0 8px;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  .lede { max-width: 68ch; color: var(--ink-soft); font-size: 15.5px; line-height: 1.6; margin: 0; }
+
+  .stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 24px;
+    align-items: start;
+    margin-top: 28px;
+  }
+  @media (max-width: 900px) {
+    .stage { grid-template-columns: 1fr; }
+  }
+
+  .wheel-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 10px;
+  }
+  figure { margin: 0; }
+  svg { width: 100%; height: auto; display: block; }
+  figcaption {
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    text-align: center;
+    padding: 10px 12px 4px;
+  }
+
+  .node-sign circle { fill: var(--surface-2); stroke: var(--line-strong); stroke-width: 1.2; cursor: pointer; }
+  .node-sign text.glyph { fill: var(--node-sign); font-size: 19px; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+  .node-sign text.name { fill: var(--ink-soft); font-size: 11px; font-family: "Source Sans 3", sans-serif; text-anchor: middle; pointer-events: none; }
+  .node-sign.active circle { stroke: var(--ink); stroke-width: 2.2; }
+  .node-sign.dim { opacity: 0.32; }
+
+  .node-planet circle { fill: var(--node-planet-fill); stroke: var(--node-planet-fill); cursor: pointer; }
+  .node-planet text.glyph { fill: var(--node-planet); font-size: 17px; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+  .node-planet text.name { fill: var(--ink); font-size: 11px; font-weight: 600; text-anchor: middle; pointer-events: none; }
+  .node-planet.active circle { stroke: var(--ink); stroke-width: 3; }
+  .node-planet.dim { opacity: 0.32; }
+
+  .edge { fill: none; transition: opacity .15s ease, stroke-width .15s ease; }
+  .edge.domicilio { stroke: var(--domicilio); stroke-width: 1.4; opacity: 0.4; }
+  .edge.esaltazione { stroke: var(--esaltazione); stroke-width: 2; opacity: 0.55; }
+  .edge.esilio { stroke: var(--esilio); stroke-width: 1.2; stroke-dasharray: 5 4; opacity: 0.32; }
+  .edge.caduta { stroke: var(--caduta); stroke-width: 1.1; stroke-dasharray: 1.5 3.5; opacity: 0.32; }
+  .edge.hi { opacity: 1 !important; stroke-width: 3 !important; }
+  .edge.dim { opacity: 0.05 !important; }
+
+  @media (prefers-reduced-motion: reduce) { .edge, .node-sign, .node-planet { transition: none; } }
+
+  /* legend */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    padding: 12px 16px;
+    margin-top: 12px;
+    background: var(--surface-2);
+    border-radius: 8px;
+    font-size: 12.5px;
+  }
+  .legend .item { display: inline-flex; align-items: center; gap: 7px; color: var(--ink-soft); }
+  .legend svg { width: 26px; height: 10px; flex: none; }
+
+  /* side panel */
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 18px 18px 16px;
+    position: sticky;
+    top: 20px;
+    min-height: 260px;
+  }
+  .panel .ph-eyebrow {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 6px;
+  }
+  .panel .ph-title {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 620;
+    font-size: 21px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .panel .ph-empty {
+    color: var(--ink-soft);
+    font-size: 13.5px;
+    line-height: 1.6;
+    margin-top: 10px;
+  }
+  .panel .rel-row {
+    display: grid;
+    grid-template-columns: 84px 1fr;
+    gap: 8px;
+    align-items: baseline;
+    padding: 7px 0;
+    border-top: 1px solid var(--line);
+  }
+  .panel .rel-row:first-of-type { border-top: none; margin-top: 14px; }
+  .panel .rel-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+  .panel .rel-value { font-size: 14px; }
+  .panel .rel-value .none { color: var(--ink-faint); font-style: italic; font-size: 13px; }
+  .panel .rel-value .deg { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--ink-soft); margin-left: 4px; }
+  .panel .rel-row.domicilio .rel-label { color: var(--domicilio); }
+  .panel .rel-row.esaltazione .rel-label { color: var(--esaltazione); }
+  .panel .rel-row.esilio .rel-label { color: var(--esilio); }
+  .panel .rel-row.caduta .rel-label { color: var(--caduta); }
+
+  footer {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--ink-faint);
+    line-height: 1.6;
+    max-width: 78ch;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="hero">
+    <div class="eyebrow">Astrologia Vedica · Jyotish</div>
+    <h1>La rete delle dignità planetarie</h1>
+    <p class="lede">Gli stessi dati dello schema a schede, letti come una rete di legami: ogni linea collega un pianeta a un segno con cui ha una relazione di domicilio, esaltazione, esilio o caduta — inclusi Plutone, Urano e Nettuno come co-domicili e co-esaltazioni. Passa il mouse (o tocca) un pianeta o un segno per isolarne i legami.</p>
+  </header>
+
+  <div class="stage">
+    <div>
+      <div class="wheel-card">
+        <figure>
+          <svg id="wheel" viewBox="0 0 760 780" role="img" aria-label="Grafo a rete che collega dieci pianeti (i sette classici più Plutone, Urano e Nettuno) ai dodici segni zodiacali attraverso quattro tipi di legame: domicilio, esaltazione, esilio, caduta."></svg>
+          <figcaption>60 legami totali — 16 di domicilio, 14 di esaltazione, 17 di esilio, 13 di caduta.</figcaption>
+        </figure>
+      </div>
+      <div class="legend" id="legend"></div>
+    </div>
+
+    <aside class="panel" id="panel">
+      <div class="ph-eyebrow">Dettaglio</div>
+      <div class="ph-title">Nessuna selezione</div>
+      <p class="ph-empty">Passa il mouse su un nodo del grafo — un pianeta al centro o un segno sull'anello esterno — per vedere qui l'elenco completo dei suoi legami.</p>
+    </aside>
+  </div>
+
+  <footer>
+    Anello esterno: i dodici segni in ordine zodiacale, da Ariete in alto in senso orario. Anello interno: i dieci pianeti — Sole, Luna, Marte, Mercurio, Giove, Venere, Saturno più Urano, Nettuno e Plutone come co-domicili/co-esaltazioni secondo lo schema del corso. Le linee tratteggiate corte indicano l'esilio, quelle puntinate la caduta. I nodi lunari (Rahu/Ketu) non sono inclusi in questo grafo — vedi lo schema a schede per la nota completa.
+  </footer>
+</div>
+
+<script>
+const PLANETS = {
+  sole:     { name: "Sole",     glyph: "☉" },
+  luna:     { name: "Luna",     glyph: "☽" },
+  marte:    { name: "Marte",    glyph: "♂" },
+  mercurio: { name: "Mercurio", glyph: "☿" },
+  giove:    { name: "Giove",    glyph: "♃" },
+  venere:   { name: "Venere",   glyph: "♀" },
+  saturno:  { name: "Saturno",  glyph: "♄" },
+  urano:    { name: "Urano",    glyph: "♅" },
+  nettuno:  { name: "Nettuno",  glyph: "♆" },
+  plutone:  { name: "Plutone",  glyph: "♇" },
+};
+
+const SIGN_ORDER = ["ariete","toro","gemelli","cancro","leone","vergine","bilancia","scorpione","sagittario","capricorno","acquario","pesci"];
+const VS = "︎"; // force text (non-emoji-color) presentation for the zodiac glyphs
+const SIGNS = {
+  ariete:     { name: "Ariete",     glyph: "♈" + VS },
+  toro:       { name: "Toro",       glyph: "♉" + VS },
+  gemelli:    { name: "Gemelli",    glyph: "♊" + VS },
+  cancro:     { name: "Cancro",     glyph: "♋" + VS },
+  leone:      { name: "Leone",      glyph: "♌" + VS },
+  vergine:    { name: "Vergine",    glyph: "♍" + VS },
+  bilancia:   { name: "Bilancia",   glyph: "♎" + VS },
+  scorpione:  { name: "Scorpione",  glyph: "♏" + VS },
+  sagittario: { name: "Sagittario", glyph: "♐" + VS },
+  capricorno: { name: "Capricorno", glyph: "♑" + VS },
+  acquario:   { name: "Acquario",   glyph: "♒" + VS },
+  pesci:      { name: "Pesci",      glyph: "♓" + VS },
+};
+
+// [planet, sign, type]
+const EDGES = [
+  ["marte","ariete","domicilio"], ["sole","ariete","esaltazione"], ["venere","ariete","esilio"], ["saturno","ariete","caduta"],
+
+  ["venere","toro","domicilio"],
+  ["luna","toro","esaltazione"], ["giove","toro","esaltazione"],
+  ["marte","toro","esilio"], ["plutone","toro","esilio"],
+
+  ["mercurio","gemelli","domicilio"],
+  ["plutone","gemelli","esaltazione"],
+  ["giove","gemelli","esilio"], ["urano","gemelli","esilio"],
+  ["nettuno","gemelli","caduta"],
+
+  ["luna","cancro","domicilio"], ["venere","cancro","esaltazione"], ["saturno","cancro","esilio"], ["marte","cancro","caduta"],
+
+  ["sole","leone","domicilio"],
+  ["urano","leone","esilio"], ["saturno","leone","esilio"],
+  ["nettuno","leone","caduta"],
+
+  ["mercurio","vergine","domicilio"],
+  ["mercurio","vergine","esaltazione"], ["urano","vergine","esaltazione"],
+  ["giove","vergine","esilio"], ["nettuno","vergine","esilio"],
+  ["venere","vergine","caduta"], ["luna","vergine","caduta"],
+
+  ["venere","bilancia","domicilio"], ["saturno","bilancia","esaltazione"],
+  ["marte","bilancia","esilio"], ["plutone","bilancia","esilio"],
+  ["sole","bilancia","caduta"],
+
+  ["marte","scorpione","domicilio"], ["plutone","scorpione","domicilio"],
+  ["mercurio","scorpione","esaltazione"],
+  ["venere","scorpione","esilio"],
+  ["giove","scorpione","caduta"], ["luna","scorpione","caduta"],
+
+  ["giove","sagittario","domicilio"], ["mercurio","sagittario","esilio"],
+
+  ["saturno","capricorno","domicilio"], ["marte","capricorno","esaltazione"], ["luna","capricorno","esilio"], ["venere","capricorno","caduta"],
+
+  ["saturno","acquario","domicilio"], ["urano","acquario","domicilio"],
+  ["nettuno","acquario","esaltazione"],
+  ["sole","acquario","esilio"],
+  ["marte","acquario","caduta"], ["plutone","acquario","caduta"],
+
+  ["giove","pesci","domicilio"], ["nettuno","pesci","domicilio"],
+  ["luna","pesci","esaltazione"], ["venere","pesci","esaltazione"],
+  ["mercurio","pesci","esilio"],
+  ["urano","pesci","caduta"],
+];
+
+const TYPE_LABEL = { domicilio: "Domicilio", esaltazione: "Esaltazione", esilio: "Esilio", caduta: "Caduta" };
+
+const svg = document.getElementById("wheel");
+const cx = 380, cy = 390;
+const rSign = 300, rPlanet = 135;
+const svgNS = "http://www.w3.org/2000/svg";
+
+function polar(r, deg) {
+  const rad = (deg - 90) * Math.PI / 180;
+  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+}
+
+const signPos = {}, planetPos = {};
+SIGN_ORDER.forEach((key, i) => { signPos[key] = polar(rSign, i * 30); });
+const planetKeys = Object.keys(PLANETS);
+planetKeys.forEach((key, i) => { planetPos[key] = polar(rPlanet, i * (360 / planetKeys.length) - 8); });
+
+function el(name, attrs, text) {
+  const e = document.createElementNS(svgNS, name);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (text !== undefined) e.textContent = text;
+  return e;
+}
+
+// edges (drawn first, under nodes)
+const edgeGroup = el("g", { id: "edges" });
+svg.appendChild(edgeGroup);
+EDGES.forEach(([planet, sign, type, deg]) => {
+  const p = planetPos[planet], s = signPos[sign];
+  const line = el("line", {
+    class: "edge " + type,
+    x1: p.x.toFixed(1), y1: p.y.toFixed(1), x2: s.x.toFixed(1), y2: s.y.toFixed(1),
+    "data-planet": planet, "data-sign": sign, "data-type": type,
+  });
+  edgeGroup.appendChild(line);
+});
+
+// faint guide circles
+const guides = el("g", {});
+guides.appendChild(el("circle", { cx, cy, r: rSign, fill: "none", stroke: "var(--line)", "stroke-width": 1 }));
+guides.appendChild(el("circle", { cx, cy, r: rPlanet, fill: "none", stroke: "var(--line)", "stroke-width": 1 }));
+svg.insertBefore(guides, edgeGroup);
+
+// sign nodes
+const signGroup = el("g", { id: "signs" });
+SIGN_ORDER.forEach((key) => {
+  const pos = signPos[key];
+  const g = el("g", { class: "node-sign", "data-sign": key });
+  g.appendChild(el("circle", { cx: pos.x.toFixed(1), cy: pos.y.toFixed(1), r: 21 }));
+  g.appendChild(el("text", { class: "glyph", x: pos.x.toFixed(1), y: pos.y.toFixed(1) }, SIGNS[key].glyph));
+  const labelR = rSign + 30;
+  const lp = polar(labelR, SIGN_ORDER.indexOf(key) * 30);
+  g.appendChild(el("text", { class: "name", x: lp.x.toFixed(1), y: lp.y.toFixed(1) }, SIGNS[key].name));
+  signGroup.appendChild(g);
+});
+svg.appendChild(signGroup);
+
+// planet nodes
+const planetGroup = el("g", { id: "planets" });
+planetKeys.forEach((key, i) => {
+  const pos = planetPos[key];
+  const g = el("g", { class: "node-planet", "data-planet": key });
+  g.appendChild(el("circle", { cx: pos.x.toFixed(1), cy: pos.y.toFixed(1), r: 19 }));
+  g.appendChild(el("text", { class: "glyph", x: pos.x.toFixed(1), y: pos.y.toFixed(1) }, PLANETS[key].glyph));
+  const labelY = pos.y < cy ? pos.y - 29 : pos.y + 33;
+  g.appendChild(el("text", { class: "name", x: pos.x.toFixed(1), y: labelY.toFixed(1) }, PLANETS[key].name));
+  planetGroup.appendChild(g);
+});
+svg.appendChild(planetGroup);
+
+// ---- legend ----
+const legend = document.getElementById("legend");
+const legendDefs = [
+  ["domicilio", "Domicilio", "4"],
+  ["esaltazione", "Esaltazione", "4"],
+  ["esilio", "Esilio", "5 4"],
+  ["caduta", "Caduta", "1.5 3.5"],
+];
+legend.innerHTML = legendDefs.map(([type, label, dash]) => `
+  <span class="item">
+    <svg viewBox="0 0 26 10"><line x1="1" y1="5" x2="25" y2="5" class="edge ${type}" style="opacity:1" stroke-dasharray="${dash === "4" ? "" : dash}"/></svg>
+    ${label}
+  </span>`).join("");
+
+// ---- interaction ----
+const panel = document.getElementById("panel");
+const allEdges = () => Array.from(edgeGroup.querySelectorAll(".edge"));
+const allSignNodes = () => Array.from(signGroup.children);
+const allPlanetNodes = () => Array.from(planetGroup.children);
+
+function clearHighlight() {
+  allEdges().forEach(e => e.classList.remove("hi", "dim"));
+  allSignNodes().forEach(n => n.classList.remove("active", "dim"));
+  allPlanetNodes().forEach(n => n.classList.remove("active", "dim"));
+  panel.innerHTML = `
+    <div class="ph-eyebrow">Dettaglio</div>
+    <div class="ph-title">Nessuna selezione</div>
+    <p class="ph-empty">Passa il mouse su un nodo del grafo — un pianeta al centro o un segno sull'anello esterno — per vedere qui l'elenco completo dei suoi legami.</p>`;
+}
+
+function highlightPlanet(key) {
+  const related = EDGES.filter(e => e[0] === key);
+  const relatedSigns = new Set(related.map(e => e[1]));
+  allEdges().forEach(e => {
+    const isRel = e.getAttribute("data-planet") === key;
+    e.classList.toggle("hi", isRel);
+    e.classList.toggle("dim", !isRel);
+  });
+  allPlanetNodes().forEach(n => n.classList.toggle("active", n.dataset.planet === key));
+  allPlanetNodes().forEach(n => n.classList.toggle("dim", n.dataset.planet !== key));
+  allSignNodes().forEach(n => n.classList.toggle("dim", !relatedSigns.has(n.dataset.sign)));
+
+  const byType = { domicilio: [], esaltazione: [], esilio: [], caduta: [] };
+  related.forEach(([, sign, type, deg]) => byType[type].push(SIGNS[sign].name + (deg ? ` (${deg})` : "")));
+  panel.innerHTML = `
+    <div class="ph-eyebrow">Pianeta</div>
+    <div class="ph-title">${PLANETS[key].glyph} ${PLANETS[key].name}</div>
+    ${["domicilio","esaltazione","esilio","caduta"].map(t => `
+      <div class="rel-row ${t}">
+        <span class="rel-label">${TYPE_LABEL[t]}</span>
+        <span class="rel-value">${byType[t].length ? byType[t].join(", ") : '<span class="none">— nessuno</span>'}</span>
+      </div>`).join("")}
+  `;
+}
+
+function highlightSign(key) {
+  const related = EDGES.filter(e => e[1] === key);
+  const relatedPlanets = new Set(related.map(e => e[0]));
+  allEdges().forEach(e => {
+    const isRel = e.getAttribute("data-sign") === key;
+    e.classList.toggle("hi", isRel);
+    e.classList.toggle("dim", !isRel);
+  });
+  allSignNodes().forEach(n => n.classList.toggle("active", n.dataset.sign === key));
+  allSignNodes().forEach(n => n.classList.toggle("dim", n.dataset.sign !== key));
+  allPlanetNodes().forEach(n => n.classList.toggle("dim", !relatedPlanets.has(n.dataset.planet)));
+
+  const byType = { domicilio: [], esaltazione: [], esilio: [], caduta: [] };
+  related.forEach(([planet, , type, deg]) => byType[type].push(PLANETS[planet].name + (deg ? ` (${deg})` : "")));
+  panel.innerHTML = `
+    <div class="ph-eyebrow">Segno</div>
+    <div class="ph-title">${SIGNS[key].glyph} ${SIGNS[key].name}</div>
+    ${["domicilio","esaltazione","esilio","caduta"].map(t => `
+      <div class="rel-row ${t}">
+        <span class="rel-label">${TYPE_LABEL[t]}</span>
+        <span class="rel-value">${byType[t].length ? byType[t].join(", ") : '<span class="none">— nessuno</span>'}</span>
+      </div>`).join("")}
+  `;
+}
+
+let pinned = null;
+function bindNode(nodeEl, kind, key) {
+  nodeEl.addEventListener("mouseenter", () => { if (!pinned) (kind === "planet" ? highlightPlanet : highlightSign)(key); });
+  nodeEl.addEventListener("mouseleave", () => { if (!pinned) clearHighlight(); });
+  nodeEl.addEventListener("click", () => {
+    if (pinned && pinned.kind === kind && pinned.key === key) { pinned = null; clearHighlight(); }
+    else { pinned = { kind, key }; (kind === "planet" ? highlightPlanet : highlightSign)(key); }
+  });
+}
+allPlanetNodes().forEach(n => bindNode(n, "planet", n.dataset.planet));
+allSignNodes().forEach(n => bindNode(n, "sign", n.dataset.sign));
+
+clearHighlight();
+</script>
+</body>
+</html>

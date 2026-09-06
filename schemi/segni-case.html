@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schema · Segni (Rashi) e Case (Bhava) — Jyotish</title>
+<style>
+  :root {
+    --ink: #262220;
+    --ink-soft: #6b625c;
+    --paper: #fbf8f4;
+    --card: #ffffff;
+    --line: #e7e0d6;
+    --accent: #8a4b2f;
+
+    --fire: #c1502e;
+    --earth: #7a6a3a;
+    --air: #4e7d8c;
+    --water: #3b5a8a;
+
+    --kendra: #8a4b2f;
+    --trikona: #4c7a4c;
+    --dusthana: #a13b3b;
+    --upachaya: #7a6420;
+    --maraka: #6b4f8a;
+    --neutral: #8a8378;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 40px 24px 80px;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Iowan Old Style","Palatino Linotype", Georgia, "Times New Roman", serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+  header { margin-bottom: 36px; }
+  h1 {
+    font-size: 30px;
+    margin: 0 0 6px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+  .subtitle {
+    font-size: 15.5px;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  h2 {
+    font-size: 20px;
+    margin: 48px 0 6px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--line);
+    font-weight: 600;
+  }
+  .section-note {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin: 4px 0 18px;
+  }
+
+  /* legend */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 18px;
+    margin: 14px 0 22px;
+    font-size: 13px;
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; color: var(--ink-soft); }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 13.5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  thead th {
+    text-align: left;
+    background: #2e2620;
+    color: #f4efe8;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    padding: 12px 12px;
+  }
+  tbody td {
+    padding: 11px 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #f6f1ea; }
+
+  .rashi-name { font-weight: 700; font-size: 14.5px; }
+  .sanskrit { color: var(--ink-soft); font-style: italic; font-size: 12.5px; }
+  .num-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: #efe7da;
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .element-tag, .class-tag {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .tag-row { display: flex; gap: 5px; flex-wrap: wrap; }
+
+  .char-list { margin: 0; padding-left: 16px; }
+  .char-list li { margin-bottom: 2px; }
+
+  footer {
+    margin-top: 50px;
+    font-size: 12px;
+    color: var(--ink-soft);
+    font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    border-top: 1px solid var(--line);
+    padding-top: 14px;
+  }
+
+  @media (max-width: 720px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tbody tr {
+      margin-bottom: 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 6px 0;
+    }
+    tbody td {
+      border-bottom: none;
+      padding: 6px 14px;
+    }
+    tbody td::before {
+      content: attr(data-label);
+      display: block;
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: var(--ink-soft);
+      margin-bottom: 2px;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Schema di riferimento — I 12 Segni (Rashi) e le 12 Case (Bhava)</h1>
+    <div class="subtitle">Astrologia Vedica (Jyotish) · caratteristiche essenziali per lo studio e il ripasso</div>
+  </header>
+
+  <h2>I 12 Segni zodiacali (Rashi)</h2>
+  <p class="section-note">Domicilio (signore del segno), elemento, modalità (cardinale/fisso/mobile), genere e parte del corpo del Kalapurusha.</p>
+
+  <div class="legend">
+    <span><span class="dot" style="background:var(--fire)"></span>Fuoco (Agni)</span>
+    <span><span class="dot" style="background:var(--earth)"></span>Terra (Prithvi)</span>
+    <span><span class="dot" style="background:var(--air)"></span>Aria (Vayu)</span>
+    <span><span class="dot" style="background:var(--water)"></span>Acqua (Jal)</span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Segno</th>
+        <th>Domicilio</th>
+        <th>Elemento</th>
+        <th>Modalità</th>
+        <th>Genere</th>
+        <th>Corpo (Kalapurusha)</th>
+        <th>Simbolo</th>
+      </tr>
+    </thead>
+    <tbody id="rashi-body"></tbody>
+  </table>
+
+  <h2>Le 12 Case (Bhava)</h2>
+  <p class="section-note">Classificazione (kendra, trikona, dusthana, upachaya, maraka) e significati principali (karakatva) di ciascuna casa.</p>
+
+  <div class="legend">
+    <span><span class="dot" style="background:var(--kendra)"></span>Kendra — case angolari (1,4,7,10)</span>
+    <span><span class="dot" style="background:var(--trikona)"></span>Trikona — case trigonali (1,5,9)</span>
+    <span><span class="dot" style="background:var(--dusthana)"></span>Dusthana — case difficili (6,8,12)</span>
+    <span><span class="dot" style="background:var(--upachaya)"></span>Upachaya — case di crescita (3,6,10,11)</span>
+    <span><span class="dot" style="background:var(--maraka)"></span>Maraka — case "della morte" (2,7)</span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Casa</th>
+        <th>Classificazione</th>
+        <th>Significati principali</th>
+        <th>Corpo</th>
+      </tr>
+    </thead>
+    <tbody id="bhava-body"></tbody>
+  </table>
+
+  <footer>
+    Schema di sintesi a uso di ripasso — fa riferimento alla dottrina esposta nel Brihat Parashara Hora Shastra e in "Astrologia dei Veggenti" di David Frawley. Non sostituisce lo studio dei testi originali.
+  </footer>
+</div>
+
+<script>
+const ELEMENT_COLOR = { Fuoco: "var(--fire)", Terra: "var(--earth)", Aria: "var(--air)", Acqua: "var(--water)" };
+
+const RASHI = [
+  ["1","Mesha","(Ariete)","Marte (Mangal)","Fuoco","Cardinale","Maschile","Testa","♈︎ Ariete"],
+  ["2","Vrishabha","(Toro)","Venere (Shukra)","Terra","Fisso","Femminile","Viso, gola","♉︎ Toro"],
+  ["3","Mithuna","(Gemelli)","Mercurio (Budh)","Aria","Mobile","Maschile","Braccia, spalle, torace alto","♊︎ Gemelli"],
+  ["4","Karka","(Cancro)","Luna (Chandra)","Acqua","Cardinale","Femminile","Petto, cuore","♋︎ Cancro"],
+  ["5","Simha","(Leone)","Sole (Surya)","Fuoco","Fisso","Maschile","Stomaco, colonna","♌︎ Leone"],
+  ["6","Kanya","(Vergine)","Mercurio (Budh)","Terra","Mobile","Femminile","Addome, intestino","♍︎ Vergine"],
+  ["7","Tula","(Bilancia)","Venere (Shukra)","Aria","Cardinale","Maschile","Ombelico, regione lombare","♎︎ Bilancia"],
+  ["8","Vrishchika","(Scorpione)","Marte (Mangal)","Acqua","Fisso","Femminile","Organi genitali, inguine","♏︎ Scorpione"],
+  ["9","Dhanu","(Sagittario)","Giove (Guru)","Fuoco","Mobile","Maschile","Cosce","♐︎ Sagittario"],
+  ["10","Makara","(Capricorno)","Saturno (Shani)","Terra","Cardinale","Femminile","Ginocchia","♑︎ Capricorno"],
+  ["11","Kumbha","(Acquario)","Saturno (Shani)","Aria","Fisso","Maschile","Polpacci, caviglie","♒︎ Acquario"],
+  ["12","Meena","(Pesci)","Giove (Guru)","Acqua","Mobile","Femminile","Piedi","♓︎ Pesci"],
+];
+
+const CLASS_COLOR = { Kendra: "var(--kendra)", Trikona: "var(--trikona)", Dusthana: "var(--dusthana)", Upachaya: "var(--upachaya)", Maraka: "var(--maraka)" };
+
+const BHAVA = [
+  ["1","Tanu Bhava","Kendra","Sé, corpo, personalità, aspetto fisico, vitalità generale, punto di partenza dell'intero tema","Corpo nel suo insieme, testa"],
+  ["2","Dhana Bhava","Maraka","Ricchezza accumulata, famiglia d'origine, parola, alimentazione, valori, viso","Viso, occhio destro, gola"],
+  ["3","Sahaja / Bhratru Bhava","Upachaya","Fratelli e sorelle, coraggio, iniziativa, comunicazione, viaggi brevi, abilità, sforzo personale","Braccia, spalle, orecchie"],
+  ["4","Sukha / Bandhu Bhava","Kendra","Madre, casa, proprietà, felicità interiore, radici emotive, istruzione di base, veicoli","Petto, cuore, polmoni"],
+  ["5","Putra Bhava","Trikona","Figli, intelligenza, creatività, romanticismo, merito da vite passate (purva punya), speculazione","Stomaco, parte alta dell'addome"],
+  ["6","Ari / Shatru / Roga Bhava","Upachaya · Dusthana","Nemici, malattie, debiti, ostacoli, servizio, lavoro quotidiano, competizione, cause legali","Intestino, sistema digerente"],
+  ["7","Yuvati / Kalatra Bhava","Kendra · Maraka","Matrimonio, coniuge, partnership, relazioni d'affari, pubblico","Regione lombare, organi riproduttivi"],
+  ["8","Randhra / Ayu Bhava","Dusthana","Longevità, trasformazione, occulto, eredità, eventi improvvisi, morte, crisi profonde","Organi genitali, escrezione"],
+  ["9","Dharma / Bhagya Bhava","Trikona","Fortuna, padre, guru, dharma, studi superiori, filosofia, lunghi viaggi, pellegrinaggi","Cosce, fianchi"],
+  ["10","Karma Bhava","Kendra · Upachaya","Carriera, status sociale, autorità, reputazione pubblica, azione nel mondo","Ginocchia, articolazioni"],
+  ["11","Labha Bhava","Upachaya","Guadagni, entrate, realizzazione dei desideri, fratelli maggiori, amicizie, reti sociali","Polpacci, caviglie, gambe"],
+  ["12","Vyaya Bhava","Dusthana","Perdite, spese, terre straniere, isolamento, sonno, vita spirituale, moksha (liberazione)","Piedi, occhio sinistro"],
+];
+
+function tagsFor(classText) {
+  return classText.split("·").map(c => c.trim()).map(c =>
+    `<span class="class-tag" style="background:${CLASS_COLOR[c] || "var(--neutral)"}">${c}</span>`
+  ).join("");
+}
+
+const rBody = document.getElementById("rashi-body");
+RASHI.forEach(([num, name, italian, lord, element, mode, gender, body, symbol]) => {
+  const tr = document.createElement("tr");
+  tr.innerHTML = `
+    <td data-label="#"><span class="num-badge">${num}</span></td>
+    <td data-label="Segno"><div class="rashi-name">${name} <span class="sanskrit">${italian}</span></div></td>
+    <td data-label="Domicilio">${lord}</td>
+    <td data-label="Elemento"><span class="element-tag" style="background:${ELEMENT_COLOR[element]}">${element}</span></td>
+    <td data-label="Modalità">${mode}</td>
+    <td data-label="Genere">${gender}</td>
+    <td data-label="Corpo">${body}</td>
+    <td data-label="Simbolo">${symbol}</td>
+  `;
+  rBody.appendChild(tr);
+});
+
+const bBody = document.getElementById("bhava-body");
+BHAVA.forEach(([num, name, cls, meaning, body]) => {
+  const tr = document.createElement("tr");
+  tr.innerHTML = `
+    <td data-label="#"><span class="num-badge">${num}</span></td>
+    <td data-label="Casa"><div class="rashi-name">${name}</div></td>
+    <td data-label="Classificazione"><div class="tag-row">${tagsFor(cls)}</div></td>
+    <td data-label="Significati">${meaning}</td>
+    <td data-label="Corpo">${body}</td>
+  `;
+  bBody.appendChild(tr);
+});
+</script>
+</body>
+</html>

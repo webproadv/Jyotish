@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jyotish Vedanga — Studio e approfondimento</title>
+<meta name="description" content="Sito di studio e approfondimento sul Jyotish Vedanga: percorso didattico, schemi e strumenti interattivi.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,440;9..144,560;9..144,680&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #edf1f7;
+    --surface: #ffffff;
+    --surface-2: #e3e9f2;
+    --ink: #1c2436;
+    --ink-soft: #55627a;
+    --ink-faint: #93a0b8;
+    --line: #d5dde9;
+    --line-strong: #b9c5d8;
+
+    --domicilio: #2f5c8a;
+    --esaltazione: #a9812a;
+    --esilio: #b1503a;
+    --caduta: #756583;
+
+    --fuoco: #c1502e;
+    --terra: #6f7a3c;
+    --aria: #3f7d92;
+    --acqua: #3b5a8a;
+
+    --accent: #2f5c8a;
+    --shadow: 0 1px 2px rgba(28,36,54,0.06), 0 6px 20px -8px rgba(28,36,54,0.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1420;
+      --surface: #161d2c;
+      --surface-2: #1d2536;
+      --ink: #e9edf6;
+      --ink-soft: #a3aec6;
+      --ink-faint: #626e88;
+      --line: #29324a;
+      --line-strong: #3a4560;
+
+      --domicilio: #7fa8d6;
+      --esaltazione: #d9ac47;
+      --esilio: #e08768;
+      --caduta: #b2a0bf;
+
+      --fuoco: #e07a55;
+      --terra: #9caf5e;
+      --aria: #6bb3cc;
+      --acqua: #7f9fd6;
+
+      --accent: #7fa8d6;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 28px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1420;
+    --surface: #161d2c;
+    --surface-2: #1d2536;
+    --ink: #e9edf6;
+    --ink-soft: #a3aec6;
+    --ink-faint: #626e88;
+    --line: #29324a;
+    --line-strong: #3a4560;
+
+    --domicilio: #7fa8d6;
+    --esaltazione: #d9ac47;
+    --esilio: #e08768;
+    --caduta: #b2a0bf;
+
+    --fuoco: #e07a55;
+    --terra: #9caf5e;
+    --aria: #6bb3cc;
+    --acqua: #7f9fd6;
+
+    --accent: #7fa8d6;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 28px -10px rgba(0,0,0,0.55);
+  }
+
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Source Sans 3", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+
+  header.hero {
+    padding: 4.5rem 1.5rem 3.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(ellipse 900px 400px at 50% -10%, color-mix(in srgb, var(--domicilio) 12%, transparent), transparent 70%);
+  }
+  .kicker {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 1rem;
+  }
+  h1.title {
+    font-family: "Fraunces", serif;
+    font-optical-sizing: auto;
+    font-weight: 560;
+    font-size: clamp(2.1rem, 4.5vw, 3.2rem);
+    letter-spacing: -0.01em;
+    margin: 0 0 0.9rem;
+    line-height: 1.08;
+  }
+  .subtitle {
+    max-width: 42rem;
+    margin: 0 auto;
+    color: var(--ink-soft);
+    font-size: 1.08rem;
+    line-height: 1.6;
+  }
+  .glyph-row {
+    font-size: 1.5rem;
+    letter-spacing: 0.5em;
+    color: var(--ink-faint);
+    margin: 1.6rem 0 0;
+    padding-left: 0.5em;
+  }
+
+  main {
+    max-width: 68rem;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 5rem;
+  }
+
+  section.block { margin-bottom: 3.6rem; }
+  .block-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.8rem;
+  }
+  h2.block-title {
+    font-family: "Fraunces", serif;
+    font-weight: 560;
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  .block-note {
+    font-size: 0.88rem;
+    color: var(--ink-faint);
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.1rem;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 1.5rem 1.5rem 1.4rem;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--card-accent, var(--domicilio));
+  }
+  .card:hover {
+    transform: translateY(-2px);
+    border-color: var(--line-strong);
+  }
+  .card .cg {
+    font-size: 1.6rem;
+    color: var(--card-accent, var(--domicilio));
+  }
+  .card h3 {
+    font-family: "Fraunces", serif;
+    font-weight: 560;
+    font-size: 1.18rem;
+    margin: 0;
+    line-height: 1.3;
+  }
+  .card p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+  .card .tag {
+    margin-top: auto;
+    padding-top: 0.6rem;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.76rem;
+    color: var(--ink-faint);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .card .tag .arrow { transition: transform 0.15s ease; }
+  .card:hover .tag .arrow { transform: translateX(3px); }
+
+  .card--esaltazione { --card-accent: var(--esaltazione); }
+  .card--esilio { --card-accent: var(--esilio); }
+  .card--caduta { --card-accent: var(--caduta); }
+
+  .list-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 1rem 1.3rem;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--shadow);
+  }
+  .list-row + .list-row { margin-top: 0.7rem; }
+  .list-row .icon {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--surface);
+    background: var(--accent);
+    border-radius: 7px;
+    width: 2.1rem;
+    height: 2.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .list-row .lr-body { flex: 1; min-width: 0; }
+  .list-row h3 {
+    font-family: "Fraunces", serif;
+    font-weight: 560;
+    font-size: 1.05rem;
+    margin: 0 0 0.15rem;
+  }
+  .list-row p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.88rem;
+  }
+  .list-row .go {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+
+  .status-note {
+    margin-top: 1.4rem;
+    font-size: 0.85rem;
+    color: var(--ink-faint);
+    line-height: 1.6;
+    border-left: 2px solid var(--line-strong);
+    padding-left: 0.9rem;
+  }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 2rem 1.5rem 3rem;
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  @media (max-width: 560px) {
+    header.hero { padding: 3.2rem 1.2rem 2.6rem; }
+    main { padding: 2.6rem 1.2rem 3.5rem; }
+    .list-row { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <p class="kicker">Jyotish Vedanga</p>
+  <h1 class="title">Studio e approfondimento<br>di astrologia vedica</h1>
+  <p class="subtitle">Percorso didattico, schemi di riferimento e strumenti interattivi costruiti per la preparazione all'esame — basati sul programma del corso e sui testi di riferimento (Frawley, BPHS).</p>
+  <p class="glyph-row" aria-hidden="true">♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓</p>
+</header>
+
+<main>
+
+  <section class="block">
+    <div class="block-head">
+      <h2 class="block-title">Schemi e strumenti</h2>
+      <span class="block-note">4 strumenti</span>
+    </div>
+    <div class="grid">
+
+      <a class="card" href="schemi/segni-case.html">
+        <span class="cg">☉</span>
+        <h3>Segni e Case</h3>
+        <p>Tabella di riferimento con le caratteristiche principali dei 12 segni (Rashi) e delle 12 case (Bhava): domicilio, elemento, modalità, corpo, significati.</p>
+        <span class="tag">Apri lo schema <span class="arrow">→</span></span>
+      </a>
+
+      <a class="card card--esaltazione" href="schemi/dignita-planetarie.html">
+        <span class="cg">♃</span>
+        <h3>Dignità Planetarie</h3>
+        <p>Infografica a griglia, raggruppata per elemento: domicilio, esaltazione, esilio e caduta di ciascun pianeta nei 12 segni, secondo lo schema del corso.</p>
+        <span class="tag">Apri l'infografica <span class="arrow">→</span></span>
+      </a>
+
+      <a class="card card--esilio" href="schemi/costellazione-dignita.html">
+        <span class="cg">✳</span>
+        <h3>Costellazione delle Dignità</h3>
+        <p>Grafo di rete interattivo: pianeti e segni collegati da tutte le relazioni di dignità. Passa il mouse o tocca un nodo per isolarne i legami.</p>
+        <span class="tag">Apri il grafo <span class="arrow">→</span></span>
+      </a>
+
+      <a class="card card--caduta" href="schemi/ruota-dignita.html">
+        <span class="cg">◎</span>
+        <h3>Ruota delle Dignità</h3>
+        <p>Ruota zodiacale a 7 anelli concentrici (Nome, Elemento, Modalità, Domicilio, Esilio, Esaltazione, Caduta), orientata come in un tema natale — Ariete a Est, senso antiorario.</p>
+        <span class="tag">Apri la ruota <span class="arrow">→</span></span>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <h2 class="block-title">Percorso di studio</h2>
+      <span class="block-note">9 settimane</span>
+    </div>
+
+    <a class="list-row" href="assets/Percorso_Studio_Jyotish.pdf">
+      <span class="icon">PDF</span>
+      <span class="lr-body">
+        <h3>Percorso di Studio — 9 settimane (anteprima PDF)</h3>
+        <p>Piano settimanale con letture, esercitazioni e autoverifica in vista dell'esame di ottobre 2026.</p>
+      </span>
+      <span class="go">apri →</span>
+    </a>
+
+    <a class="list-row" href="assets/Percorso_Studio_Jyotish.docx">
+      <span class="icon">DOC</span>
+      <span class="lr-body">
+        <h3>Percorso di Studio — 9 settimane (scarica .docx)</h3>
+        <p>Stesso documento in formato Word, modificabile.</p>
+      </span>
+      <span class="go">scarica →</span>
+    </a>
+
+    <p class="status-note">Basato su "Astrologia dei Veggenti" (David Frawley) e Brihat Parashara Hora Shastra, adattato al programma del corso.</p>
+  </section>
+
+  <section class="block">
+    <div class="block-head">
+      <h2 class="block-title">Nota sullo schema di dignità</h2>
+    </div>
+    <p class="status-note" style="border-left-color: var(--esaltazione);">
+      Questo sito segue lo schema di dignità planetarie specifico del corso "Jyotish Vedanga", che integra i tre pianeti moderni (Plutone, Urano, Nettuno) come co-domicili/co-esaltazioni accanto ai 7 pianeti classici, e usa la terminologia occidentale delle modalità (Cardinale/Fisso/Mobile). Non è lo schema classico BPHS puro.
+    </p>
+  </section>
+
+</main>
+
+<footer>
+  jyotish.vercel.app · aggiornato via repo webproadv/Jyotish
+</footer>
+
+</body>
+</html>
