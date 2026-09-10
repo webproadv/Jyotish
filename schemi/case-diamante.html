@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schema · Le 12 Case nel Diamante Nord-Indiano — Jyotish</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,440;9..144,560;9..144,680&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #edf1f7;
+    --surface: #ffffff;
+    --surface-2: #e3e9f2;
+    --ink: #1c2436;
+    --ink-soft: #55627a;
+    --ink-faint: #93a0b8;
+    --line: #d5dde9;
+    --line-strong: #b9c5d8;
+
+    --domicilio: #2f5c8a;
+    --esaltazione: #a9812a;
+    --esilio: #b1503a;
+    --caduta: #756583;
+
+    --dharma: #a9812a;
+    --artha: #2f5c8a;
+    --kama: #b1503a;
+    --moksha: #756583;
+
+    --shadow: 0 1px 2px rgba(28,36,54,0.06), 0 6px 20px -8px rgba(28,36,54,0.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1420;
+      --surface: #161d2c;
+      --surface-2: #1d2536;
+      --ink: #e9edf6;
+      --ink-soft: #a3aec6;
+      --ink-faint: #626e88;
+      --line: #29324a;
+      --line-strong: #3a4560;
+
+      --domicilio: #7fa8d6;
+      --esaltazione: #d9ac47;
+      --esilio: #e08768;
+      --caduta: #b2a0bf;
+
+      --dharma: #d9ac47;
+      --artha: #7fa8d6;
+      --kama: #e08768;
+      --moksha: #b2a0bf;
+
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 28px -10px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1420;
+    --surface: #161d2c;
+    --surface-2: #1d2536;
+    --ink: #e9edf6;
+    --ink-soft: #a3aec6;
+    --ink-faint: #626e88;
+    --line: #29324a;
+    --line-strong: #3a4560;
+
+    --domicilio: #7fa8d6;
+    --esaltazione: #d9ac47;
+    --esilio: #e08768;
+    --caduta: #b2a0bf;
+
+    --dharma: #d9ac47;
+    --artha: #7fa8d6;
+    --kama: #e08768;
+    --moksha: #b2a0bf;
+
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 10px 28px -10px rgba(0,0,0,0.55);
+  }
+
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Source Sans 3", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+
+  .back-home {
+    position: fixed;
+    top: 1.1rem;
+    left: 1.1rem;
+    z-index: 40;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.9rem;
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    box-shadow: var(--shadow);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .back-home:hover {
+    transform: translateY(-1px);
+    border-color: var(--line-strong);
+  }
+  @media (max-width: 560px) {
+    .back-home { top: 0.7rem; left: 0.7rem; padding: 0.45rem 0.75rem; font-size: 0.72rem; }
+  }
+
+  .page {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 76px 24px 90px;
+  }
+
+  header.hero {
+    max-width: 78ch;
+    margin: 0 auto 40px;
+    text-align: center;
+  }
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 10px;
+  }
+  h1 {
+    font-family: "Fraunces", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+    letter-spacing: -0.01em;
+    margin: 0 0 12px;
+    line-height: 1.15;
+  }
+  .lede {
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .stage {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .diamond-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 24px;
+    flex: 0 0 auto;
+  }
+  .diamond-card svg { display: block; width: min(560px, 82vw); height: auto; }
+
+  .house-cell {
+    fill-opacity: 0.55;
+    stroke: var(--surface);
+    stroke-width: 2.5;
+    cursor: pointer;
+    transition: fill-opacity 0.15s ease;
+  }
+  .house-cell:hover, .house-cell.sel { fill-opacity: 0.9; }
+  .house-cell.sel { stroke: var(--ink); stroke-width: 3; }
+
+  .diamond-outline {
+    fill: none;
+    stroke: var(--line-strong);
+    stroke-width: 2;
+  }
+
+  .h-num {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 22px;
+    fill: var(--ink);
+    text-anchor: middle;
+    pointer-events: none;
+  }
+  .h-tag {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 600;
+    font-size: 10.5px;
+    letter-spacing: 0.03em;
+    fill: var(--ink-soft);
+    text-anchor: middle;
+    pointer-events: none;
+  }
+
+  .panel {
+    flex: 1 1 320px;
+    min-width: 300px;
+    max-width: 420px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 26px 26px 22px;
+  }
+  .panel .ph-num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    margin: 0 0 6px;
+  }
+  .panel h2 {
+    font-family: "Fraunces", serif;
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin: 0 0 2px;
+  }
+  .panel .ph-it {
+    color: var(--ink-soft);
+    font-style: italic;
+    font-size: 14.5px;
+    margin: 0 0 16px;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0 0 16px;
+  }
+  .chip {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    color: var(--ink-soft);
+    background: var(--surface-2);
+  }
+  .chip.group {
+    color: var(--surface);
+    border-color: transparent;
+  }
+  .panel .field {
+    margin: 0 0 12px;
+  }
+  .panel .field .flabel {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 3px;
+  }
+  .panel .field .fval {
+    font-size: 14.5px;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .panel .hint {
+    color: var(--ink-faint);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .legend {
+    margin: 30px auto 0;
+    max-width: 900px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    justify-content: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+  .legend .litem { display: flex; align-items: center; gap: 7px; }
+  .legend .dot { width: 11px; height: 11px; border-radius: 3px; flex: 0 0 auto; }
+
+  .table-wrap {
+    margin-top: 48px;
+    overflow-x: auto;
+  }
+  table.houses {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    font-size: 13.5px;
+  }
+  table.houses th {
+    background: var(--surface-2);
+    text-align: left;
+    padding: 10px 12px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--line);
+  }
+  table.houses td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  table.houses tr:last-child td { border-bottom: none; }
+  table.houses tr.rowsel td { background: var(--surface-2); }
+  table.houses tr:hover td { background: var(--surface-2); cursor: pointer; }
+  table.houses .tn { font-family: "Fraunces", serif; font-weight: 600; }
+
+  footer {
+    margin-top: 46px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    line-height: 1.6;
+    max-width: 78ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+</head>
+<body>
+<a class="back-home" href="../index.html">← Home</a>
+<div class="page">
+
+  <header class="hero">
+    <div class="eyebrow">Astrologia Vedica · Jyotish</div>
+    <h1>Le 12 Case nel Diamante Nord-Indiano</h1>
+    <p class="lede">Lo schema a diamante (North Indian Chart): posizioni fisse per le 12 case, con Bhava, classificazione (Kendra/Trikona/Panapara/Apoklima, Upachaya, Dusthana, Maraka), karaka principale, gruppo di Purushartha e significati. Clicca o tocca una casa per vederne il dettaglio; il numero al centro di ogni figura è la casa stessa, non un segno specifico — nel diamante le posizioni restano fisse ed è il segno ad "girare" secondo l'Ascendente.</p>
+  </header>
+
+  <div class="stage">
+    <div class="diamond-card">
+      <svg id="diamond" viewBox="0 0 640 640" role="img" aria-label="Diamante nord-indiano con le 12 case in posizione fissa, colorate secondo il gruppo di Purushartha (Dharma, Artha, Kama, Moksha)."></svg>
+    </div>
+
+    <div class="panel" id="panel">
+      <p class="hint">Clicca su una casa del diamante (o su una riga della tabella qui sotto) per vederne il dettaglio completo: Bhava, classificazione, karaka e significati.</p>
+    </div>
+  </div>
+
+  <div class="legend" id="legend"></div>
+
+  <div class="table-wrap">
+    <table class="houses" id="houses-table">
+      <thead>
+        <tr>
+          <th>Casa</th>
+          <th>Bhava</th>
+          <th>Gruppo</th>
+          <th>Classificazione</th>
+          <th>Karaka</th>
+          <th>Significati principali</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <footer>
+    Kendra = case angolari (1,4,7,10) · Trikona = case trine, le più favorevoli (1,5,9) · Panapara = succedenti (2,5,8,11) · Apoklima = cadenti (3,6,9,12) · Upachaya = case che migliorano nel tempo (3,6,10,11) · Dusthana = case difficili (6,8,12) · Maraka = case che, per combinazione con altri fattori, sono collegate alla vitalità (2,7). I Purushartha (Dharma/Artha/Kama/Moksha) raggruppano le case in quattro trikona da 4 case ciascuna: 1-5-9, 2-6-10, 3-7-11, 4-8-12.
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  const S = 600, OFF = 20; // square side, offset padding inside the 640 viewBox
+
+  // named reference points (fractions of S)
+  const pt = (fx, fy) => ({ x: OFF + fx * S, y: OFF + fy * S });
+  const T  = pt(0.5, 0), R = pt(1, 0.5), B = pt(0.5, 1), L = pt(0, 0.5);
+  const TL = pt(0, 0), TR = pt(1, 0), BR = pt(1, 1), BL = pt(0, 1);
+  const C  = pt(0.5, 0.5);
+  const P1 = pt(0.75, 0.25), P2 = pt(0.25, 0.25), P3 = pt(0.75, 0.75), P4 = pt(0.25, 0.75);
+
+  const POLY = {
+    1:  [T, P1, C, P2],
+    2:  [TL, T, P2],
+    3:  [TL, P2, L],
+    4:  [L, P2, C, P4],
+    5:  [BL, P4, L],
+    6:  [BL, B, P4],
+    7:  [B, P4, C, P3],
+    8:  [BR, B, P3],
+    9:  [BR, P3, R],
+    10: [R, P3, C, P1],
+    11: [TR, P1, R],
+    12: [TR, T, P1],
+  };
+
+  const GROUP_LABEL = { dharma: "Dharma", artha: "Artha", kama: "Kama", moksha: "Moksha" };
+
+  const HOUSES = [
+    { n:1,  sk:"Tanu Bhava",          it:"Il Sé, il corpo",              group:"dharma", kendra:true,  trikona:true,  panapara:false, apoklima:false, upachaya:false, dusthana:false, maraka:false, karaka:"Sole",
+      signif:"Personalità, corpo fisico, vitalità, aspetto esteriore, il modo in cui ci si presenta al mondo." },
+    { n:2,  sk:"Dhana Bhava",         it:"Ricchezza, famiglia",          group:"artha",  kendra:false, trikona:false, panapara:true,  apoklima:false, upachaya:false, dusthana:false, maraka:true,  karaka:"Giove",
+      signif:"Ricchezza accumulata, valori, parola, viso, famiglia d'origine, ciò che si possiede." },
+    { n:3,  sk:"Sahaja Bhava",        it:"Fratelli, coraggio",           group:"kama",   kendra:false, trikona:false, panapara:false, apoklima:true,  upachaya:true,  dusthana:false, maraka:false, karaka:"Marte",
+      signif:"Coraggio, iniziativa personale, fratelli e sorelle minori, comunicazione, brevi viaggi, abilità manuali." },
+    { n:4,  sk:"Sukha Bhava",         it:"Felicità, madre, casa",        group:"moksha", kendra:true,  trikona:false, panapara:false, apoklima:false, upachaya:false, dusthana:false, maraka:false, karaka:"Luna",
+      signif:"Casa, madre, pace interiore, radici, istruzione di base, proprietà e veicoli." },
+    { n:5,  sk:"Putra Bhava",         it:"Figli, intelligenza",          group:"dharma", kendra:false, trikona:true,  panapara:true,  apoklima:false, upachaya:false, dusthana:false, maraka:false, karaka:"Giove",
+      signif:"Figli, creatività, intelligenza, meriti delle vite passate (purva punya), romanticismo, speculazione." },
+    { n:6,  sk:"Ripu / Shatru Bhava", it:"Nemici, malattia, servizio",   group:"artha",  kendra:false, trikona:false, panapara:false, apoklima:true,  upachaya:true,  dusthana:true,  maraka:false, karaka:"Saturno / Marte",
+      signif:"Malattie, debiti, nemici e ostacoli quotidiani, servizio, lavoro subordinato, animali domestici." },
+    { n:7,  sk:"Yuvati / Kalatra Bhava", it:"Partner, matrimonio",       group:"kama",   kendra:true,  trikona:false, panapara:false, apoklima:false, upachaya:false, dusthana:false, maraka:true,  karaka:"Venere",
+      signif:"Matrimonio, partner d'affari, relazioni paritarie, il pubblico, l'altro da sé." },
+    { n:8,  sk:"Ayu / Randhra Bhava", it:"Trasformazione, longevità",    group:"moksha", kendra:false, trikona:false, panapara:true,  apoklima:false, upachaya:false, dusthana:true,  maraka:false, karaka:"Saturno",
+      signif:"Trasformazione, crisi, eredità, occulto, longevità, ciò che è nascosto o non detto." },
+    { n:9,  sk:"Dharma / Bhagya Bhava", it:"Fortuna, padre, dharma",     group:"dharma", kendra:false, trikona:true,  panapara:false, apoklima:true,  upachaya:false, dusthana:false, maraka:false, karaka:"Giove",
+      signif:"Fortuna, padre, guru, credo religioso e filosofico, viaggi lunghi, istruzione superiore." },
+    { n:10, sk:"Karma Bhava",         it:"Carriera, status",             group:"artha",  kendra:true,  trikona:false, panapara:false, apoklima:false, upachaya:true,  dusthana:false, maraka:false, karaka:"Sole / Mercurio",
+      signif:"Carriera, status, reputazione pubblica, azione nel mondo, autorità." },
+    { n:11, sk:"Labha Bhava",         it:"Guadagni, desideri",           group:"kama",   kendra:false, trikona:false, panapara:true,  apoklima:false, upachaya:true,  dusthana:false, maraka:false, karaka:"Giove",
+      signif:"Guadagni, reti sociali, amicizie, desideri realizzati, fratelli maggiori." },
+    { n:12, sk:"Vyaya Bhava",         it:"Perdite, distacco",            group:"moksha", kendra:false, trikona:false, panapara:false, apoklima:true,  upachaya:false, dusthana:true,  maraka:false, karaka:"Saturno / Ketu",
+      signif:"Perdite, spese, isolamento, terre straniere, spiritualità, liberazione (moksha)." },
+  ];
+  const byN = Object.fromEntries(HOUSES.map(h => [h.n, h]));
+
+  function el(tag, attrs = {}, text) {
+    const e = document.createElementNS("http://www.w3.org/2000/svg", tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function centroid(pts) {
+    let x = 0, y = 0;
+    pts.forEach(p => { x += p.x; y += p.y; });
+    return { x: x / pts.length, y: y / pts.length };
+  }
+  function tags(h) {
+    const t = [];
+    if (h.kendra) t.push("Kendra");
+    if (h.trikona) t.push("Trikona");
+    if (h.panapara) t.push("Panapara");
+    if (h.apoklima) t.push("Apoklima");
+    if (h.upachaya) t.push("Upachaya");
+    if (h.dusthana) t.push("Dusthana");
+    if (h.maraka) t.push("Maraka");
+    return t;
+  }
+
+  // ---- draw diamond ----
+  const svg = document.getElementById("diamond");
+  const sq = OFF;
+  svg.appendChild(el("rect", { x: sq, y: sq, width: S, height: S, class: "diamond-outline" }));
+  svg.appendChild(el("line", { x1: TL.x, y1: TL.y, x2: BR.x, y2: BR.y, class: "diamond-outline" }));
+  svg.appendChild(el("line", { x1: TR.x, y1: TR.y, x2: BL.x, y2: BL.y, class: "diamond-outline" }));
+  svg.appendChild(el("polygon", { points: [T, R, B, L].map(p => p.x + "," + p.y).join(" "), class: "diamond-outline" }));
+
+  const cells = {};
+  HOUSES.forEach(h => {
+    const pts = POLY[h.n];
+    const poly = el("polygon", {
+      points: pts.map(p => p.x + "," + p.y).join(" "),
+      class: "house-cell",
+      style: "fill: var(--" + h.group + ")",
+      "data-n": h.n,
+    });
+    svg.appendChild(poly);
+    cells[h.n] = poly;
+  });
+  HOUSES.forEach(h => {
+    const c = centroid(POLY[h.n]);
+    const dy = h.n === 1 || h.n === 4 || h.n === 7 || h.n === 10 ? -20 : -6;
+    svg.appendChild(el("text", { x: c.x, y: c.y + dy, class: "h-num" }, "H" + h.n));
+    const tg = tags(h).slice(0, 2).map(s => s[0]).join(" ");
+    svg.appendChild(el("text", { x: c.x, y: c.y + dy + 17, class: "h-tag" }, tg));
+  });
+
+  // ---- panel ----
+  const panel = document.getElementById("panel");
+  function renderPanel(h) {
+    const chipsHtml = tags(h).map(t => '<span class="chip">' + t + "</span>").join("");
+    panel.innerHTML =
+      '<p class="ph-num">CASA ' + h.n + " · " + GROUP_LABEL[h.group].toUpperCase() + '</p>' +
+      "<h2>" + h.sk + "</h2>" +
+      '<p class="ph-it">' + h.it + "</p>" +
+      '<div class="chips"><span class="chip group" style="background:var(--' + h.group + ')">' + GROUP_LABEL[h.group] + "</span>" + chipsHtml + "</div>" +
+      '<div class="field"><p class="flabel">Karaka principale</p><p class="fval">' + h.karaka + "</p></div>" +
+      '<div class="field"><p class="flabel">Significati</p><p class="fval">' + h.signif + "</p></div>";
+  }
+
+  function select(n) {
+    Object.values(cells).forEach(c => c.classList.remove("sel"));
+    cells[n].classList.add("sel");
+    renderPanel(byN[n]);
+    document.querySelectorAll("#houses-table tbody tr").forEach(r => r.classList.remove("rowsel"));
+    const row = document.querySelector('#houses-table tbody tr[data-n="' + n + '"]');
+    if (row) row.classList.add("rowsel");
+  }
+
+  Object.entries(cells).forEach(([n, poly]) => {
+    poly.addEventListener("click", () => select(Number(n)));
+    poly.addEventListener("mouseenter", () => select(Number(n)));
+  });
+
+  // ---- legend ----
+  const legend = document.getElementById("legend");
+  Object.entries(GROUP_LABEL).forEach(([key, label]) => {
+    const item = document.createElement("div");
+    item.className = "litem";
+    item.innerHTML = '<span class="dot" style="background:var(--' + key + ')"></span>' + label + " (case " + ({dharma:"1·5·9", artha:"2·6·10", kama:"3·7·11", moksha:"4·8·12"})[key] + ")";
+    legend.appendChild(item);
+  });
+
+  // ---- table ----
+  const tbody = document.querySelector("#houses-table tbody");
+  HOUSES.forEach(h => {
+    const tr = document.createElement("tr");
+    tr.setAttribute("data-n", h.n);
+    tr.innerHTML =
+      '<td class="tn">H' + h.n + "</td>" +
+      "<td>" + h.sk + "<br><span style=\"color:var(--ink-faint);font-size:12px\">" + h.it + "</span></td>" +
+      "<td>" + GROUP_LABEL[h.group] + "</td>" +
+      "<td>" + tags(h).join(", ") + "</td>" +
+      "<td>" + h.karaka + "</td>" +
+      "<td>" + h.signif + "</td>";
+    tr.addEventListener("click", () => select(h.n));
+    tbody.appendChild(tr);
+  });
+
+  select(1);
+})();
+</script>
+
+</body>
+</html>
